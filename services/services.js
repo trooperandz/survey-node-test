@@ -34,7 +34,14 @@ module.exports = {
         });
     },
 
-    // Question actions
+    // Question & Answer actions
+    getAnswerQuestionIds: function(guestId) {
+        return models.Answer.findAll({
+            where: {guestId:guestId},
+            attributes: ['QuestionId'],
+        });
+    },
+
     getQuestions: function() {
         return models.Question.findAll({
             include: [{

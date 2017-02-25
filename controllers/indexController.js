@@ -1,6 +1,15 @@
 var models = require('../models'),
     services = require('../services/services');
 
+// Select a random question and serve the index page
+function getRandomQuestion(req, res) {
+    services.getRandomQuestion().then(function(question) {
+        var ques = question[0].dataValues.question;
+        var choices = question[0].Choices;
+        res.render('index', { question:ques, choices:choices });
+    });
+}
+
 module.exports = {
     // Serve main page and provide appropriate survey question (do not show duplicate to previous guest)
     renderIndexPage: function(req, res) {
@@ -9,34 +18,32 @@ module.exports = {
         services.getGuest(ipAddress).then(function(guest) {
             if(guest) {
                 // Generate list of questionIds already answered. Get guestId first
-                console.log('previous guest was found!');
-                var guestId = guest[0].dataValues.id
-                console.log('guestId from found guest query: ' + guestId);
+                console.log('existing guest was found!');
+                var guestId = guest.dataValues.id;
                 // Save guestId as session var for later reuse
                 req.session.guestId = guestId;
                 console.log('session guestId: ' + req.session.guestId);
-                /*
-                models.Answer.findAll({
-                    where: {guestId:guestId},
-                    attributes: ['QuestionId'],
-                }).then(function(answer) {
-                    // Generate array of all questionId's
-                    console.log('answer: ', answer);
-                });*/
-
+                services.getAnswerQuestionIds(req.session.guestId).then(function(questionIds) {
+                    // Note: questionIds will be an array in all cases.  Empty if no entries found.
+                    if(questionIds.length > 0) {
+                        // User has recorded answers. Generate an array of all questionIds.
+                        console.log('questionIds were found: ', questionIds);
+                        res.render('index');
+                    } else {
+                        // User has no recorded answers.  Generate random question.
+                        console.log('no questionIds were found. generating new question');
+                        getRandomQuestion(req, res);
+                    }
+                });
             } else {
                 // User has never answered a question.  First, create new Guest record.
                 // Next, select a random question from Question table
                 services.insertGuest(ipAddress).then(function(guest) {
+                    console.log('new guest encountered!');
                     console.log('guest in new user block: ' , guest);
                     // Save guestId as session var for use in survey form processing
-                    req.session.guestId = guest[0].dataValues.id;
-                    console.log('session guestId in new user block: ' + req.session.guestId);
-                    services.getRandomQuestion().then(function(question) {
-                        var ques = question[0].dataValues.question;
-                        var choices = question[0].Choices;
-                        res.render('index', { question:ques, choices:choices });
-                    });
+                    req.session.guestId = guest.dataValues.id;
+                    getRandomQuestion(req, res);
                 });
             }
         });

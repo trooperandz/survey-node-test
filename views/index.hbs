@@ -9,13 +9,13 @@
                     <legend>{{question}}</legend>
 
                     {{!-- Entry feedback --}}
-                    <p class="error"></p>
-                    <p class="success"></p>
+                    <div class="error"></div>
+                    <div class="success"></div>
 
                     <div class="form-group">
                       <div class="col-lg-10">
                       {{!-- Save ChoiceId --}}
-                      <input type="hidden" name="ChoiceId" id="ChoiceId" value="{{QuestionId}}"
+                      <input type="hidden" name="ChoiceId" id="ChoiceId" value="{{QuestionId}}">
                       {{#choices}}
                         <div class="radio">
                           <label>
