@@ -87,10 +87,6 @@ $(document).ready(function() {
     $('#add-question-form button').on('click', function(e) {
         e.preventDefault();
 
-        // Remove any previous feedback
-        $('.error').html('');
-        $('.success').html('');
-
         // Require question and at least two answers (i.e. Yes/No)
         var errorArr = [];
         var fullAnswerArr = [];
@@ -155,6 +151,10 @@ $(document).ready(function() {
             url: '/admin/createQuestion',
             data: formData
         }).done(function(response) {
+            // Remove any previous feedback
+            $('.error').html('');
+            $('.success').html('');
+
             setTimeout(function() {
                 removeSpinner();
 

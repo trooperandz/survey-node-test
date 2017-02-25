@@ -12,20 +12,66 @@ module.exports = {
         res.render('createQuestion');
     },
 
+    // Load view questions page
+    renderViewQuestionsPage: function(req, res) {
+        // Get all questions
+        services.getQuestions().then(function(questions) {
+            //console.log('questions: ' , questions);
+            // Test to get one set of question choices
+            // questions[0].Choices.forEach(function(choiceObj) {
+            //     console.log('choice: ' , choiceObj.dataValues.choice);
+            // });
+            // Test to get sets of questions and choices
+            /* Preferred format:
+                questionArr: [
+                    {
+                        question: '.....',
+                        choices: [
+                            {
+
+                            },
+                            {
+
+                            }
+                        ]
+                    }
+                ]
+            */
+            var questionArr = [];
+
+            questions.forEach(function(question, i) {
+                var questionObj = {};
+                var choiceArr = [];
+                var choiceObj = {};
+                questionObj.index = i+1;
+                questionObj.question = question.dataValues.question;
+                //console.log('question: ' + question.dataValues.question);
+                question.Choices.forEach(function(choice) {
+                    //choiceObj.choice = choice.dataValues.choice;
+                    choiceArr.push(choice.dataValues.choice);
+                    console.log('choice: ' + choice.dataValues.choice);
+                });
+                questionObj.choices = choiceArr;
+                questionArr.push(questionObj);
+            });
+            console.log('questionArr: ' , questionArr);
+            res.render('viewQuestions', { questions:questionArr });
+        });
+    },
+
+    // Load view answers page
+    renderViewAnswersPage: function(req, res) {
+        res.render('viewAnswers');
+    },
+
     // Process new question insertion
     createQuestion: function(req, res) {
         // Note: data will arrive as JSON string
         var data = JSON.parse(req.body.data);
         var question = false;
         var questionId = 1;
-        console.log('data: ' , data);
-        // insert Choice test
-        /*
-        services.insertChoice('choice test', ).then(function(choice) {
-            console.log('choice: ' , choice);
-        });*/
 
-        // 1) Get all values in loop
+        // Get all values in loop
         var questionObj = {};
         var answerObjArr = [];
         data.forEach(function(obj) {
@@ -35,14 +81,11 @@ module.exports = {
                 answerObjArr.push(obj);
             }
         });
-        console.log('questionObj: ' , questionObj + 'answerObjArr: ' , answerObjArr);
 
-        // 2) Insert question first
+        // Insert question first, then answers
         services.insertQuestion(questionObj.value).then(function(question) {
             if (question) {
-                console.log('question: ' + question);
                 var questionId = question.dataValues.id;
-                console.log('questionId in insertQuestion: ' + questionId);
                 // Now insert all choices
                 answerObjArr.forEach(function(answerObj) {
                     services.insertChoice(answerObj.value, questionId).then(function(choice) {
@@ -53,36 +96,6 @@ module.exports = {
                 res.send('error');
             }
         });
-
-        // Test insert choice
-        // services.insertChoice('test2', 11).then(function(choice) {
-        //     console.log('choice: ' , choice);
-        // });
-
-        /*
-        data.forEach(function(obj) {
-            // Insert question into db first & retrieve questionId for answer foreign key
-            if (obj.name == 'question') {
-                question = obj.value;
-                services.insertQuestion(question).then(function(question) {
-                    if (question) {
-                        console.log('question: ' + question);
-                        var questionId = question.dataValues.id;
-                        console.log('questionId in insertQuestion: ' + questionId);
-                    } else {
-                        res.send('error');
-                    }
-                });
-            } else if (obj.name == 'answer') {
-                console.log('questionId in answer block: ' + questionId);
-                services.insertChoice(obj.value, questionId).then(function(choice) {
-                    console.log('choice: ' , choice);
-                });
-            } else {
-                // Possible query error
-                res.send('error');
-            }
-        });*/
         res.send('success');
     }
 }

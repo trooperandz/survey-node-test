@@ -1,0 +1,34 @@
+{{!-- Show all listed questions to admin --}}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>View All Questions</h1>
+            <hr>
+        {{#questions}}
+            <div class="panel panel-warning panel-question">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{index}}) {{this.question}}</h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal">
+                      <fieldset>
+                        <div class="form-group">
+                          <div class="col-lg-10">
+                          {{#choices}}
+                            <div class="radio">
+                              <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                {{this}}
+                              </label>
+                            </div>
+                         {{/choices}}
+                          </div>
+                        </div>
+                      </fieldset>
+                    </form>
+                </div>
+            </div> {{!-- /.panel --}}
+        {{/questions}}
+        </div>
+    </div>
+</div>

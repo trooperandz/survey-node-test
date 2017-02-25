@@ -22,6 +22,14 @@ module.exports = {
     },
 
     // Question actions
+    getQuestions: function() {
+        return models.Question.findAll({
+            include: [{
+                model: models.Choice
+            }]
+        });
+    },
+
     insertQuestion: function(question) {
         return models.Question.create({
             question:question

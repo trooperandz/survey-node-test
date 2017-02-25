@@ -45,6 +45,10 @@ input.answer {
     margin-top: 15px;
 }
 
+.radio label {
+    font-size: 17px;
+}
+
 .footer {
     position: absolute;
     bottom: 0;
