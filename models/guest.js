@@ -1,4 +1,3 @@
-'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Guest = sequelize.define('Guest', {
     ipAddress: DataTypes.STRING

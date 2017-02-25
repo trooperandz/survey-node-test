@@ -1,10 +1,9 @@
-'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Question = sequelize.define('Question', {
-    question: DataTypes.STRING
+    var Question = sequelize.define('Question', {
+        question: DataTypes.STRING
   }, {
     classMethods: {
-      associate: function(models) {
+        associate: function(models) {
         // Foreign key questionId in Choice model
         Question.hasMany(models.Choice);
       }

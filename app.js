@@ -1,19 +1,19 @@
-'use strict';
 
 var express = require('express'),
-      path = require('path'),
-      favicon = require('serve-favicon'),
-      logger = require('morgan'),
-      cookieParser = require('cookie-parser'),
-      bodyParser = require('body-parser'),
-      session = require('express-session'),
-      hbs = require('hbs'),
-      exphbs = require('express-handlebars');
+    path = require('path'),
+    favicon = require('serve-favicon'),
+    logger = require('morgan'),
+    cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser'),
+    session = require('express-session'),
+    hbs = require('hbs'),
+    exphbs = require('express-handlebars'),
+    app = express();
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-
-var app = express();
+// Establish routes
+var indexRoute = require('./routes/index');
+var userRoute = require('./routes/user');
+var adminRoute = require('./routes/admin');
 
 // Session setup
 app.set('trust proxy', 1) // trust first proxy
@@ -45,8 +45,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/users', users);
+// Set routes
+app.use('/', indexRoute);
+app.use('/users', userRoute);
+app.use('/admin', adminRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

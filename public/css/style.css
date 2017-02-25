@@ -1,8 +1,64 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding-top: 50px;
+    margin-bottom: 50px;
+    font-family: 'Raleway', sans-serif;
+    /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
+}
+
+.error {
+    color: #d9534f;
+}
+
+.success {
+    color: #5cb85c;
+}
+
+h1 {
+    font-weight: 200;
 }
 
 a {
   color: #00B7FF;
+}
+
+.panel-title>a {
+    color: #5bc0de;
+}
+
+input.form-control.main {
+    background: none;
+    border: 1px solid #ccc;
+    color: #ccc;
+    margin: 10px 6px;
+}
+
+input.answer {
+    margin: 10px 6px;
+}
+
+#survey-submit-btn {
+    margin-top: 15px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here, must equal margin-bottom of body */
+    height: 50px;
+    /* Set to match the main theme */
+    /*background-color: #262626;*/
+    /*background-color: #2b2b2b;*/
+    /*background-color: #303030;*/
+    border-color: #121212;
+    color: #A19E82;
+}
+
+.footer p {
+    margin: 14.5px 0;
 }

@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Add New Question</h1>
+            <hr>
+
+            {{!-- Note: form is processed via ajax to allow for dynamic answer rows capture --}}
+            <form id="add-question-form">
+                <div class="panel panel-default panel-question">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Main Question:</h3>
+                        <br>
+
+                        {{!-- Entry feedback --}}
+                        <p class="error"></p>
+                        <p class="success"></p>
+
+                        <input type="text" class="form-control main" name="question" id="question" placeholder="Enter main question">
+                    </div>
+                    <div class="panel-body">
+                        <h3 class="panel-title">Add Possible Answers: &nbsp; <a href="#" id="add-answer-link">Add Row</a></h3>
+                        <br>
+                        <div class="answers">
+                            <input type="text" class="form-control answer" name="answer" placeholder="Enter an answer choice">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" id="question-submit-btn">Submit</button>
+                    </div>
+                </div> {{!-- /.panel --}}
+            </form>
+        </div>
+    </div>
+</div>
