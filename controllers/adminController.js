@@ -16,27 +16,6 @@ module.exports = {
     renderViewQuestionsPage: function(req, res) {
         // Get all questions
         services.getQuestions().then(function(questions) {
-            //console.log('questions: ' , questions);
-            // Test to get one set of question choices
-            // questions[0].Choices.forEach(function(choiceObj) {
-            //     console.log('choice: ' , choiceObj.dataValues.choice);
-            // });
-            // Test to get sets of questions and choices
-            /* Preferred format:
-                questionArr: [
-                    {
-                        question: '.....',
-                        choices: [
-                            {
-
-                            },
-                            {
-
-                            }
-                        ]
-                    }
-                ]
-            */
             var questionArr = [];
 
             questions.forEach(function(question, i) {

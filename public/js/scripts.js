@@ -9,7 +9,45 @@ $(document).ready(function() {
     // Answer input element, to be reused by multiple actions
     var answerInput = '<input type="text" class="form-control answer" name="answer" placeholder="Enter an answer choice">';
 
-    // Process the login modal inputs.  Validate first.
+    // Process the guest question selection submit via AJAX
+    $('#guest-survey-form button').on('click', function(e) {
+        e.preventDefault();
+
+        var QuestionId = $('#QuestionId').val();
+        var ChoiceId = $("#guest-survey-form input:radio:checked").map(function () {
+            return $(this).val();
+        }).get();
+        console.log('selected radio: ' + ChoiceId);
+
+        var formData = 'QuestionId=' + QuestionId + '&ChoiceId=' + ChoiceId;
+
+        // Process selection
+        $.ajax({
+            type: 'POST',
+            url: '/processSurveySelection',
+            data: formData
+        }).done(function(response) {
+            setTimeout(function() {
+                removeSpinner();
+
+                switch (response) {
+                    case 'success':
+                        // Question processed successfully
+                        $('.success').html('Thank you!  Your answer was submitted successfully.');
+                        break;
+                    case 'error':
+                        // System error
+                        $('.error').html('We are sorry, but there was a system error. \n Please contact the administrator if the problem persists.');
+                        break;
+                    default:
+                        // Unknown error
+                        $('.error').html('We are sorry, but there was an unknown error. \n Please contact the administrator.');
+                }
+            }, timeDelay);
+        });
+    });
+
+    // Process the login modal inputs via AJAX.  Validate first.
     $('#login-btn').on('click', function(e) {
         e.preventDefault();
 

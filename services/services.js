@@ -4,6 +4,19 @@ var Sequelize = require('sequelize'),
     models = require('../models');
 
 module.exports = {
+    // Index actions
+    getGuest: function(ipAddress) {
+        return models.Guest.findOne({
+            where: {ipAddress:ipAddress}
+        });
+    },
+
+    insertGuest: function(ipAddress) {
+        return models.Guest.create({
+            ipAddress:ipAddress
+        });
+    },
+
     // User actions
     getUser: function(email) {
         return models.User.findOne({
@@ -27,6 +40,15 @@ module.exports = {
             include: [{
                 model: models.Choice
             }]
+        });
+    },
+
+    getRandomQuestion: function() {
+        // TODO: order choices by ChoiceId
+        return models.Question.findAll({
+            limit: 1,
+            order: [ [Sequelize.fn('RAND')] ],
+            include: [{  model: models.Choice }],
         });
     },
 

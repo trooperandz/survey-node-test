@@ -45,6 +45,10 @@ input.answer {
     margin-top: 15px;
 }
 
+.panel-title.text-gray {
+    color: #737373;
+}
+
 .radio label {
     font-size: 17px;
 }

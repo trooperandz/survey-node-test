@@ -25,6 +25,8 @@ app.use(session({
   cookie: { secure: false },
   // Note: change to true when user is logged in.  Used for app access rules.
   authenticated: false,
+  // Note: guestId will be set after IP address is processed
+  guestId: false,
 }));
 
 // Configure view engine

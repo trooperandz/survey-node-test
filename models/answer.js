@@ -4,9 +4,12 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+        // Foreign key choiceId in Answer model
         Answer.belongsTo(models.Choice);
+        // Foreign key guestId in Answer model
         Answer.belongsTo(models.Guest);
+        // Foreign key questionId in Answer model
+        Answer.belongsTo(models.Question);
       }
     }
   });
