@@ -17,4 +17,7 @@ router.get('/viewAnswers', adminController.renderViewAnswersPage);
 // POST create question
 router.post('/createQuestion', adminController.createQuestion);
 
+// POST delete question
+router.post('/deleteQuestion', adminController.deleteQuestion);
+
 module.exports = router;

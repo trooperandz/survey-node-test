@@ -76,5 +76,10 @@ module.exports = {
             }
         });
         res.send('success');
-    }
+    },
+
+    // Delete the selected question
+    deleteQuestion: function(questionId) {
+
+    },
 }

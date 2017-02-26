@@ -49,6 +49,10 @@ input.answer {
     color: #737373;
 }
 
+.panel-title>a.text-danger {
+    color: #d9534f;
+}
+
 .radio label {
     font-size: 17px;
 }

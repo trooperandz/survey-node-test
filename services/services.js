@@ -7,20 +7,20 @@ module.exports = {
     // Index actions
     getGuest: function(ipAddress) {
         return models.Guest.findOne({
-            where: {ipAddress:ipAddress}
+            where: {ipAddress:ipAddress},
         });
     },
 
     insertGuest: function(ipAddress) {
         return models.Guest.create({
-            ipAddress:ipAddress
+            ipAddress:ipAddress,
         });
     },
 
     // User actions
     getUser: function(email) {
         return models.User.findOne({
-            where: { email:email }
+            where: { email:email },
         });
     },
 
@@ -30,7 +30,7 @@ module.exports = {
             email:email,
             password:password,
             ipAddress:ipAddress,
-            admin:admin
+            admin:admin,
         });
     },
 
@@ -42,11 +42,35 @@ module.exports = {
         });
     },
 
+    insertAnswer: function(ChoiceId, GuestId, QuestionId) {
+        return models.Answer.create({
+            ChoiceId:ChoiceId,
+            GuestId:GuestId,
+            QuestionId:QuestionId,
+        });
+    },
+
     getQuestions: function() {
         return models.Question.findAll({
             include: [{
-                model: models.Choice
-            }]
+                model: models.Choice,
+            }],
+        });
+    },
+
+    // Get a question that the guest has not been previously asked
+    getNewQuestion: function(questionIdArray) {
+        return models.Question.findAll({
+            limit: 1,
+            order: [ [Sequelize.fn('RAND')] ],
+            where: {
+                id: {
+                    $notIn: questionIdArray,
+                }
+            },
+            include: [{
+                model: models.Choice,
+            }],
         });
     },
 
@@ -61,14 +85,14 @@ module.exports = {
 
     insertQuestion: function(question) {
         return models.Question.create({
-            question:question
+            question:question,
         });
     },
 
     insertChoice: function(choice, QuestionId) {
         return models.Choice.create({
             choice:choice,
-            QuestionId:QuestionId
+            QuestionId:QuestionId,
         });
     },
 }

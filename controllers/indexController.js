@@ -5,8 +5,9 @@ var models = require('../models'),
 function getRandomQuestion(req, res) {
     services.getRandomQuestion().then(function(question) {
         var ques = question[0].dataValues.question;
+        var QuestionId = question[0].dataValues.id;
         var choices = question[0].Choices;
-        res.render('index', { question:ques, choices:choices });
+        res.render('index', { question:ques, choices:choices, QuestionId:QuestionId });
     });
 }
 
@@ -26,9 +27,27 @@ module.exports = {
                 services.getAnswerQuestionIds(req.session.guestId).then(function(questionIds) {
                     // Note: questionIds will be an array in all cases.  Empty if no entries found.
                     if(questionIds.length > 0) {
-                        // User has recorded answers. Generate an array of all questionIds.
+                        // User has previous answers. Generate an array of all questionIds for later use in NOT IN clause
                         console.log('questionIds were found: ', questionIds);
-                        res.render('index');
+                        var questionIdArray = questionIds.map(function(data) {
+                            return data.dataValues.QuestionId;
+                        });
+                        console.log('questionIdArray after map: ' , questionIdArray);
+                        // Now get a question that has not already been answered by guest
+                        // If question is found, render index page with question
+                        // If no question is found, show feedback that all questions have already been answered by guest
+                        services.getNewQuestion(questionIdArray).then(function(question) {
+                            console.log('new question generated: ' , question);
+                            if (question.length > 0) {
+                                var ques = question[0].dataValues.question;
+                                var QuestionId = question[0].dataValues.id;
+                                var choices = question[0].Choices;
+                                res.render('index', { question:ques, choices:choices, QuestionId:QuestionId });
+                            } else {
+                                // Note: do not need to pass other params.  Will read false
+                                res.render('index');
+                            }
+                        });
                     } else {
                         // User has no recorded answers.  Generate random question.
                         console.log('no questionIds were found. generating new question');
@@ -49,12 +68,27 @@ module.exports = {
         });
     },
 
+    // Process guest survey question selection (from AJAX request)
     processSurveySelection: function(req, res) {
-        // Save visitor's IP address
-        var ipAddress = req.ip;
+        // Set guestId from session var for table insertion
+        // Should always be set at this point.
+        // Provide fail-safe in case of unknown error
+        var GuestId = req.session.guestId;
+        if (!GuestId) {
+            res.send('error');
+        }
+
         var QuestionId = req.body.QuestionId;
         var ChoiceId = req.body.ChoiceId;
 
-
+        services.insertAnswer(ChoiceId, GuestId, QuestionId).then(function(answer) {
+            if (answer) {
+                console.log('answer inserted: ' , answer);
+                res.send('success')
+            } else {
+                console.log('answer not inserted');
+                res.send('error');
+            }
+        });
     },
 }
