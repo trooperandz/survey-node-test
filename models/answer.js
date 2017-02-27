@@ -9,7 +9,10 @@ module.exports = function(sequelize, DataTypes) {
         // Foreign key guestId in Answer model
         Answer.belongsTo(models.Guest);
         // Foreign key questionId in Answer model
-        Answer.belongsTo(models.Question);
+        // Delete all associated answers when a QuestionId is deleted
+        Answer.belongsTo(models.Question,
+            {onDelete: 'CASCADE'}
+        );
       }
     }
   });

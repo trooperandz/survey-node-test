@@ -5,15 +5,9 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
         associate: function(models) {
         // Foreign key questionId in Choice model.
-        // Delete all associated choices when a question is deleted
-        Question.hasMany(models.Choice,
-            {onDelete: 'CASCADE'}
-        );
+        Question.hasMany(models.Choice);
         // Foreign key questionId in Answer model
-        // Delete all associated answers when a question is deleted
-        Question.hasMany(models.Answer,
-            {onDelete: 'CASCADE'}
-        );
+        Question.hasMany(models.Answer);
       }
     }
   });
