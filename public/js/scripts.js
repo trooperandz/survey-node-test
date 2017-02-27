@@ -73,7 +73,8 @@ $(document).ready(function() {
             errorArr.push('Please enter a valid email address! \n');
         }
 
-        if (!validPass.test(password)) {
+        // Do not validate pass with regex.  Only test to see if correct.
+        if (!password) {
             errorArr.push('Please enter a valid password!');
         }
 

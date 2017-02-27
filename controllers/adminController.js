@@ -5,16 +5,16 @@ module.exports = {
     // Load add question page
     renderCreateQuestionPage: function(req, res) {
         // Authenticate User
-        if (!services.authenticateUser(req, res)) {
+        if (!req.session.authenticated) {
             return res.render('forbidden');
         }
-        res.render('createQuestion');
+        res.render('createQuestion', { adminUser:req.session.firstName });
     },
 
     // Load view questions page
     renderViewQuestionsPage: function(req, res) {
         // Authenticate User
-        if (!services.authenticateUser(req, res)) {
+        if (!req.session.authenticated) {
             return res.render('forbidden');
         }
 
@@ -38,14 +38,14 @@ module.exports = {
                 questionArr.push(questionObj);
             });
             console.log('questionArr: ' , questionArr);
-            res.render('viewQuestions', { questions:questionArr });
+            res.render('viewQuestions', { questions:questionArr, adminUser:req.session.firstName });
         });
     },
 
     // Load view answers page
     renderViewAnswersPage: function(req, res) {
         // Authenticate User
-        if (!services.authenticateUser(req, res)) {
+        if (!req.session.authenticated) {
             return res.render('forbidden');
         }
 
@@ -60,7 +60,7 @@ module.exports = {
                 };
             });
             console.log('answers: ' , answerArray);
-            res.render('viewAnswers', { answers:answerArray });
+            res.render('viewAnswers', { answers:answerArray, adminUser:req.session.firstName });
         });
     },
 

@@ -9,7 +9,11 @@ validPass = /^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#
 
 module.exports = {
     renderIndexPage: function(req, res) {
-        res.render('users');
+        // Authenticate User
+        if (!req.session.authenticated) {
+            return res.render('forbidden');
+        }
+        res.render('users', { adminUser:req.session.firstName });
     },
 
     loginUser: function(req, res) {
@@ -39,6 +43,7 @@ module.exports = {
                         // Set session info
                         req.session.firstName = firstName;
                         req.session.authenticated = true;
+                        console.log('session.firstName: ' + req.session.firstName + ' session.authenticated = ' + req.session.authenticated);
                         res.send('success');
                     } else if (!response) {
                         console.log('Password did not pass!')
@@ -47,6 +52,11 @@ module.exports = {
                 });
             }
         });
+    },
+
+    logoutUser: function(req, res) {
+        req.session.destroy();
+        res.redirect('/');
     },
 
     createUser: function(req, res) {
@@ -85,7 +95,7 @@ module.exports = {
             // If no errors, insert new user into db, return user to users page and display success message
             services.insertUser(name, email, hash, ipAddress, admin).then(function(user) {
                 var successMsg = 'Thank you, ' + name + ' was registered successfully!';
-                return res.render('users', { successMsg:successMsg });
+                return res.render('users', { successMsg:successMsg, adminUser:req.session.firstName });
             });
         }
     }

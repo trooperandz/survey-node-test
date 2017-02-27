@@ -4,13 +4,6 @@ var Sequelize = require('sequelize'),
     models = require('../models');
 
 module.exports = {
-    // Check authorization of user for active session
-    authenticateUser: function(req, res) {
-        if (!req.session.authenticated) {
-            return false;
-        }
-    },
-
     // Index actions
     getGuest: function(ipAddress) {
         return models.Guest.findOne({

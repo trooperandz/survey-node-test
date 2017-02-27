@@ -11,4 +11,7 @@ router.post('/create', userController.createUser);
 // POST login user
 router.post('/login', userController.loginUser);
 
+// GET logout user
+router.get('/logout', userController.logoutUser);
+
 module.exports = router;
