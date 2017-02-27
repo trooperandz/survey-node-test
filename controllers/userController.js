@@ -8,6 +8,7 @@ validEmail = /(^[\w-]+(?:\.[\w-]+)*@(?:[\w-]+\.)+[a-zA-Z]{2,7}$)|(^N\/A$)/,
 validPass = /^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,}$/;
 
 module.exports = {
+    // Serve the manage users page
     renderIndexPage: function(req, res) {
         // Authenticate User
         if (!req.session.authenticated) {
@@ -16,17 +17,15 @@ module.exports = {
         res.render('users', { adminUser:req.session.firstName });
     },
 
+    // Process user login
     loginUser: function(req, res) {
         var email = req.body.email;
         var password = req.body.password;
-        console.log('login inputs: ' + email + ' ' + password);
 
         // Validate password. First, retrieve user record.
         // Note: fail == incorrect user; error == system error, success == validated user
         services.getUser(email).then(function(user) {
-            console.log('user: ' , user);
             if (!user) {
-                console.log('user was not found');
                 res.send('fail');
             } else {
                 var hash = user.dataValues.password;
@@ -39,14 +38,11 @@ module.exports = {
                     if (err) {
                         res.send('error');
                     } else if (response) {
-                        console.log('Password validated!');
                         // Set session info
                         req.session.firstName = firstName;
                         req.session.authenticated = true;
-                        console.log('session.firstName: ' + req.session.firstName + ' session.authenticated = ' + req.session.authenticated);
                         res.send('success');
                     } else if (!response) {
-                        console.log('Password did not pass!')
                         res.send('fail');
                     }
                 });
@@ -54,11 +50,13 @@ module.exports = {
         });
     },
 
+    // Process user logout
     logoutUser: function(req, res) {
         req.session.destroy();
         res.redirect('/');
     },
 
+    // Process create new user
     createUser: function(req, res) {
         var name = req.body.registerName;
         var email = req.body.registerEmail;
@@ -88,7 +86,6 @@ module.exports = {
 
         // If there were errors, send back error messages
         if (errorArr.length > 0) {
-            console.log('errors happened');
             // Return user back to users page and display errors. Keep form inputs.
             return res.render('users', { name:name, email:email, password:password, errors:errorArr })
         } else {

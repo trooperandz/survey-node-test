@@ -91,7 +91,6 @@ module.exports = {
                 // Now insert all choices
                 answerObjArr.forEach(function(answerObj) {
                     services.insertChoice(answerObj.value, questionId).then(function(choice) {
-                        console.log('choice: ' , choice);
                     });
                 });
             } else {
@@ -105,7 +104,6 @@ module.exports = {
     deleteQuestion: function(req, res) {
         var questionId = req.body.questionId;
         services.deleteQuestion(questionId).then(function(question) {
-            console.log('question: ' , question);
             res.send('success');
         });
     },
