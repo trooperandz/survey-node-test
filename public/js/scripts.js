@@ -180,6 +180,45 @@ $(document).ready(function() {
         }
     });
 
+    // Process the delete question link action
+    $('.delete-question-link').on('click', function(e) {
+        //var questionId = $(this).data('questionId');
+        // Save container for later deletion
+        var questionContainer = $(this).parent().parent().parent();
+        var questionId = $(this).attr('data-questionId');
+
+        var formData = 'questionId=' + questionId;
+
+        initializeSpinner();
+
+        // AJAX call to delete question
+        $.ajax({
+            type: 'POST',
+            url: '/admin/deleteQuestion',
+            data: formData
+        }).done(function(response) {
+            setTimeout(function() {
+                removeSpinner();
+
+                switch (response) {
+                    case 'success':
+                        // Question deleted successfully. Remove from DOM and show alert
+                        questionContainer.remove();
+                        $('.alert-modal .modal-body').html('<p>The question was deleted successfully!</p>');
+                        // Update question count using container count
+                        var questionCount = $('.panel-question').length;
+                        $('#question-count').html(questionCount);
+                        $('.alert-modal').modal('show');
+                        break;
+                    default:
+                        // System error
+                        $('.alert-modal .modal-body').html('<p>There was an error processing your request! Please contact the administrator.</p>');
+                        $('.alert-modal').modal('show');
+                }
+            }, timeDelay);
+        });
+    });
+
     // Instructions for add question AJAX processing
     function processAddQuestion(formData) {
         console.log('formData in script file process fn: ' , formData);

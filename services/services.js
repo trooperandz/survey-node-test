@@ -89,6 +89,14 @@ module.exports = {
         });
     },
 
+    deleteQuestion: function(questionId) {
+        return models.Question.destroy({
+            where: {
+                id: questionId
+            },
+        });
+    },
+
     insertChoice: function(choice, QuestionId) {
         return models.Choice.create({
             choice:choice,

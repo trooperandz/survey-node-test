@@ -14,7 +14,7 @@ module.exports = {
 
     // Load view questions page
     renderViewQuestionsPage: function(req, res) {
-        // Get all questions
+        // Get all questions.  Package into usable JSON format.
         services.getQuestions().then(function(questions) {
             var questionArr = [];
 
@@ -22,11 +22,11 @@ module.exports = {
                 var questionObj = {};
                 var choiceArr = [];
                 var choiceObj = {};
+                // Used for question display count.  Do not start at zero
                 questionObj.index = i+1;
                 questionObj.question = question.dataValues.question;
-                //console.log('question: ' + question.dataValues.question);
+                questionObj.questionId = question.dataValues.id;
                 question.Choices.forEach(function(choice) {
-                    //choiceObj.choice = choice.dataValues.choice;
                     choiceArr.push(choice.dataValues.choice);
                     console.log('choice: ' + choice.dataValues.choice);
                 });
@@ -79,7 +79,11 @@ module.exports = {
     },
 
     // Delete the selected question
-    deleteQuestion: function(questionId) {
-
+    deleteQuestion: function(req, res) {
+        var questionId = req.body.questionId;
+        services.deleteQuestion(questionId).then(function(question) {
+            console.log('question: ' , question);
+            res.send('success');
+        });
     },
 }
