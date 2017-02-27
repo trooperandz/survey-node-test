@@ -84,6 +84,7 @@ INSERT INTO `Users` VALUES (1,'Matthew Holland','mtholland10@gmail.com','$2a$10$
  - AJAX was used for most form processing via [jQuery](https://jquery.com/)
  - Spinners are utilized to indicate system processing
  - All SQL tables and queries were managed via the [SequelizeJS](http://docs.sequelizejs.com/en/v3/) ORM
+ - All forms contain error handling
 
  ### ToDos
 
