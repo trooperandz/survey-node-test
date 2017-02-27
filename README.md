@@ -2,14 +2,13 @@
 
 > This application presents randomly selected multiple choice survey questions to site visitors.  Visitors are never given a repeat question.  Answers are stored in a MySQL database.  The application features an admin interface which allows authorized users to add admin users, create questions, view questions and view visitors' answers.  It is built on Node.js and utilizes Express.js, Sequelize.js and Handlebars.js.
 
-##### To view the live site demo, navigate to:
-[www.survey.mtholla.com](http://www.survey.mtholla.com)
+##### To view the live site demo, navigate to [www.survey.mtholla.com](http://www.survey.mtholla.com)
 
 ### Installation Instructions For Local Environment:
 
  * Clone the repository into your chosen directory:
 
- ```sh
+```sh
 $ cd survey-app
 $ git clone git@github.com:trooperandz/survey-node-test.git
 ```
