@@ -26,6 +26,9 @@ module.exports = {
                 res.send('fail');
             } else {
                 var hash = user.dataValues.password;
+                var name = user.dataValues.name;
+                // Extract first name for navbar
+                var firstName = name.split(' ')[0];
 
                 // Validate password
                 bcrypt.compare(password, hash, function(err, response) {
@@ -33,6 +36,9 @@ module.exports = {
                         res.send('error');
                     } else if (response) {
                         console.log('Password validated!');
+                        // Set session info
+                        req.session.firstName = firstName;
+                        req.session.authenticated = true;
                         res.send('success');
                     } else if (!response) {
                         console.log('Password did not pass!')

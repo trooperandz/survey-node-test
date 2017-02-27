@@ -65,8 +65,13 @@ a:focus {
     outline: none;
 }
 
+.glyphicon-trash {
+    font-size: 14px;
+}
+
 .delete-question-link {
-    font-weight: 200;
+    font-weight: 300;
+    color: gray;
 }
 
 /* Remove focus outlines from all buttons */
@@ -91,7 +96,13 @@ a:focus {
 .panel-question .panel-heading {
     font-size: 18px;
     font-weight: 400;
-    color: gray;
+    color: #2b3e50;
+}
+
+.panel-guest-question .panel-heading {
+    font-size: 20px;
+    font-weight: 200;
+    color: #A19E82;
 }
 
 .panel-create-question .panel-heading {
@@ -102,6 +113,10 @@ a:focus {
 
 .panel-create-question button {
     margin-top: 13px;
+}
+
+.panel-answer .panel-body {
+    font-weight: 200;
 }
 
 .form-group.form-button {
@@ -126,6 +141,18 @@ input.form-control.main {
 
 input.answer {
     margin: 10px 6px;
+}
+
+input#registerPass {
+    margin-bottom: 5px;
+}
+
+.password-requirement {
+    font-weight: 200;
+}
+
+.radio label, .checkbox label, .help-block {
+    font-weight: 200;
 }
 
 #survey-submit-btn {

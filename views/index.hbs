@@ -1,56 +1,60 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <h1>Hello!  Please answer the following question:</h1>
+            <h2>Hello!  Please answer the following question:</h2>
             <hr>
-            <div class="well">
-
               {{!-- If there are no questions in the system, show feedback --}}
               {{#if noSystemQuestions}}
-                <p class="text-warning">There are no questions in the system!</p>
+                <div class="well">
+                    <p class="text-warning">There are no questions in the system!</p>
+                </div>
               {{/if}}
-
               {{!-- If a question was generated, present question to guest --}}
               {{#if question}}
                 <form class="form-horizontal" id="guest-survey-form">
-                  <fieldset>
-                    <legend>{{question}}</legend>
-
-                    {{!-- Entry feedback --}}
-                    <div class="error"></div>
-                    <div class="success"></div>
-
-                    <div class="form-group">
-                      <div class="col-lg-10">
-
-                      {{!-- Save QuestionId --}}
-                      <input type="hidden" name="QuestionId" id="QuestionId" value="{{QuestionId}}">
-
-                      {{#choices}}
-                        <div class="radio">
-                          <label>
-                            <input type="radio" name="choice" id="choice" value={{this.id}}>
-                            {{this.choice}}
-                          </label>
+                    <fieldset>
+                        <div class="panel panel-default panel-guest-question">
+                        <div class="panel-heading">
+                            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                            {{question}}
                         </div>
-                      {{/choices}}
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-lg-10">
-                        <button type="submit" class="btn btn-primary" id="survey-submit-btn">   Submit</button>
-                      </div>
-                    </div>
-                  </fieldset>
+                            <div class="panel-body">
+                                {{!-- Entry feedback --}}
+                                <div class="error"></div>
+                                <div class="success"></div>
+                                <div class="guest-question-container">
+                                    <div class="form-group">
+                                        <div class="col-lg-10">
+                                        {{!-- Save QuestionId --}}
+                                        <input type="hidden" name="QuestionId" id="QuestionId" value="{{QuestionId}}">
+                                        {{#choices}}
+                                            <div class="radio">
+                                                <label>
+                                                <input type="radio" name="choice" id="choice" value={{this.id}}>
+                                                {{this.choice}}
+                                                </label>
+                                            </div>
+                                        {{/choices}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-10">
+                                            <button type="submit" class="btn btn-info" id="survey-submit-btn"> Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
                 </form>
               {{/if}}
-
               {{!-- If guest has answered all possible questions, show feedback --}}
               {{#if allQuestionsAnswered}}
-                <p class="success">You have already answered all questions in the system.</p>
-                <p>Thank you for your participation!</p>
+                <div class="well">
+                    <p class="success">You have already answered all questions in the system.</p>
+                    <p>Thank you for your participation!</p>
+                </div>
               {{/if}}
-
             </div>
         </div>
     </div>

@@ -1,8 +1,20 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <h1>You've reached the answers page...</h1>
+            <h2>View All Answers</h2>
+            <p class="pull-right">Total Answers: <span id="answer-count">{{answers.length}}</span></p>
             <hr>
+            {{#answers}}
+            <div class="panel panel-info panel-answer">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-user"></span>&nbsp; Guest: {{this.ipAddress}}</h3>
+                </div>
+                <div class="panel-body">
+                    <p>*{{this.question}}</p>
+                    <p class="text-warning">{{this.answer}}</p>
+                </div>
+            </div>
+            {{/answers}}
         </div>
     </div>
 </div>

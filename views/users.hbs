@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <h1>Manage Users</h1>
+            <h2>Manage Users</h2>
             <hr>
             <form action="/users/create" method="POST" class="form-horizontal" id="register-form">
                 <fieldset>
@@ -23,21 +23,22 @@
                             {{/if}}
 
                             <div class="form-group">
-                                <label for="registerName" class="col-lg-2 control-label">Full Name</label>
+                                <label for="registerName" class="col-lg-2 control-label">Full Name*</label>
                                 <div class="col-lg-10">
                                     <input type="text" class="form-control" name="registerName" id="registerName" value="{{name}}" placeholder="Enter User's Full Name">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="registerEmail" class="col-lg-2 control-label">Email Address</label>
+                                <label for="registerEmail" class="col-lg-2 control-label">Email Address*</label>
                                 <div class="col-lg-10">
                                     <input type="text" class="form-control" name="registerEmail" id="registerEmail" value="{{email}}">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="registerPass" class="col-lg-2 control-label">Password</label>
+                                <label for="registerPass" class="col-lg-2 control-label">Password*</label>
                                 <div class="col-lg-10">
                                     <input type="password" class="form-control" name="registerPass" id="registerPass" value="{{password}}">
+                                    <span class="text-info password-requirement">*Passwords: at least 8 characters, one uppercase and one lowercase letter, one special character and one number</span>
                                 </div>
                             </div>
                             <div class="form-group form-button">

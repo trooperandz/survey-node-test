@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Polife`</a>
+      <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-cd" aria-hidden="true"></span> Polife`</a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -16,8 +16,9 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {{!-- This only shows if logged in --}}
+        {{#if firstName}}
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Hello, Matt <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Welcome, {{firstName}} <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp; Home</a></li>
             <li class="divider"></li>
@@ -27,12 +28,14 @@
             <li class="divider"></li>
             <li><a href="/admin/addQuestionForm"><span class="glyphicon glyphicon-plus"></span>&nbsp; Add Questions</a></li>
             <li class="divider"></li>
-            <li><a href="/users"><span class="glyphicon glyphicon-user"></span>&nbsp; Add Users</a></li>
+            <li><a href="/users"><span class="glyphicon glyphicon-user"></span>&nbsp; Manage Users</a></li>
             <li class="divider"></li>
             <li><a href="/admin/logout"><span class="glyphicon glyphicon-off"></span>&nbsp; Log Out</a></li>
           </ul>
         </li>
-        <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
+        {{else}}
+            <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
+        {{/if}}
       </ul>
     </div>
   </div>

@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div>
-            <h1>View All Questions</h1>
+            <h2>View All Questions</h2>
             <p class="pull-right">Total Questions: <span id="question-count">{{questions.length}}</span></p>
             </div>
             <hr>
@@ -14,7 +14,7 @@
                 <div class="panel-heading">
                     <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
                     {{this.question}}
-                    <a href="#" class="text-danger pull-right delete-question-link" data-questionId="{{this.questionId}}"> Remove</a>
+                    <a href="#" class="text-danger pull-right delete-question-link" data-questionId="{{this.questionId}}"><span class="glyphicon glyphicon-trash"></span> Remove</a>
                 </div>
                 <div class="panel-body">
                     <form class="form-horizontal">
@@ -24,7 +24,7 @@
                           {{#choices}}
                             <div class="radio">
                               <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                <input type="radio" name="answer" id="answer" value="">
                                 {{this}}
                               </label>
                             </div>

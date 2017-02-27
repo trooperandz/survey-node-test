@@ -20,6 +20,13 @@ $(document).ready(function() {
             return $(this).val();
         }).get();
 
+        // Validate selection
+        if (ChoiceId == '') {
+            $('.alert-modal .modal-body').html('<p class="text-warning">Form Error:</p><p>You must select an answer before proceeding!</p>');
+            $('.alert-modal').modal('show');
+            return false;
+        }
+
         var formData = 'QuestionId=' + QuestionId + '&ChoiceId=' + ChoiceId;
         console.log('formData: ' + formData);
 
@@ -36,8 +43,9 @@ $(document).ready(function() {
 
                 switch (response) {
                     case 'success':
-                        // Answer processed successfully
-                        $('.success').html('<p>Thank you!  Your answer was submitted successfully. <a href="/"> Answer Another</a></p>');
+                        // Answer processed successfully. Show feedback and remove question content
+                        $('.success').html('<p>Thank you!  Your answer was submitted successfully. <a href="/" class="text-info"> Answer Another</a></p>');
+                        $('.guest-question-container').remove();
                         break;
                     case 'error':
                         // System error
@@ -98,7 +106,7 @@ $(document).ready(function() {
                     switch (response) {
                         case 'success':
                             // User was authenticated
-                            window.location.href = '/admin';
+                            window.location.href = '/admin/viewQuestions';
                             break;
                         case 'fail':
                             // User not authenticated

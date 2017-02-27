@@ -2,18 +2,22 @@ var models = require('../models'),
     services = require('../services/services');
 
 module.exports = {
-    // Load main index page
-    renderIndexPage: function(req, res) {
-        res.render('questions');
-    },
-
     // Load add question page
     renderCreateQuestionPage: function(req, res) {
+        // Authenticate User
+        if (!services.authenticateUser(req, res)) {
+            return res.render('forbidden');
+        }
         res.render('createQuestion');
     },
 
     // Load view questions page
     renderViewQuestionsPage: function(req, res) {
+        // Authenticate User
+        if (!services.authenticateUser(req, res)) {
+            return res.render('forbidden');
+        }
+
         // Get all questions.  Package into usable JSON format.
         services.getQuestions().then(function(questions) {
             var questionArr = [];
@@ -40,7 +44,24 @@ module.exports = {
 
     // Load view answers page
     renderViewAnswersPage: function(req, res) {
-        res.render('viewAnswers');
+        // Authenticate User
+        if (!services.authenticateUser(req, res)) {
+            return res.render('forbidden');
+        }
+
+        // Get all answers and package into usable array of JSON data
+        // TODO: find a more optimized way to do this? Group by ipAddress?
+        services.getGuestAnswers().then(function(answer) {
+            var answerArray = answer.map(function(answerObj) {
+                return {
+                    ipAddress: answerObj.dataValues.Guest.ipAddress,
+                    question: answerObj.dataValues.Question.question,
+                    answer: answerObj.dataValues.Choice.choice,
+                };
+            });
+            console.log('answers: ' , answerArray);
+            res.render('viewAnswers', { answers:answerArray });
+        });
     },
 
     // Process new question insertion
