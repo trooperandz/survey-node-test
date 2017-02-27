@@ -75,3 +75,18 @@ INSERT INTO `Users` VALUES (1,'Matthew Holland','mtholland10@gmail.com','$2a$10$
 
 
 * At this point, you are ready to run and explore the application in your local environment. Navigate to http://localhost:3000/ in your chosen browser and enjoy!
+
+### Notes
+
+ - Application structure utilizes the MVC design pattern via the [Express Generator](https://expressjs.com/en/starter/generator.html) and [handlebars.js](http://handlebarsjs.com/) library
+ - Bootstrap was used for this project (the Superhero theme via [Bootswatch](http://bootswatch.com/superhero/)
+ - Session management was accomplished via the npm [express-session](https://www.npmjs.com/package/express-session) package
+ - AJAX was used for most form processing via [jQuery](https://jquery.com/)
+ - Spinners are utilized to indicate system processing
+ - All SQL tables and queries were managed via the [SequelizeJS](http://docs.sequelizejs.com/en/v3/) ORM
+
+ ### ToDos
+
+  - Create a clone application using [React.js](https://facebook.github.io/react)
+  - Investigate possibility of replacing SequelizeJS ```hasMany``` assocation with the ```belongsToMany``` association
+  - Investigate the optimization and possible alternatives of the ```getGuestAnswers()``` database query function located in the /services/services.js file
