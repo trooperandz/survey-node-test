@@ -98,3 +98,4 @@ INSERT INTO `Users` VALUES (1,'Matthew Holland','mtholland10@gmail.com','$2a$10$
  - Create a clone application using [React.js](https://facebook.github.io/react)
  - Investigate possibility of replacing SequelizeJS ```hasMany``` assocation with the ```belongsToMany``` association
  - Investigate the optimization and possible alternatives of the ```getGuestAnswers()``` database query function located in the /services/services.js file
+ - Fix the ordering of question choices (by id)
