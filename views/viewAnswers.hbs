@@ -4,6 +4,7 @@
             <h2>View All Answers</h2>
             <p class="pull-right">Total Answers: <span id="answer-count">{{answers.length}}</span></p>
             <hr>
+          {{#if answers}}
             {{#answers}}
             <div class="panel panel-info panel-answer">
                 <div class="panel-heading">
@@ -15,6 +16,11 @@
                 </div>
             </div>
             {{/answers}}
+          {{else}}
+            <div class="well">
+                <p class="text-warning">There are no answers in the system!</p>
+            </div>
+          {{/if}}
         </div>
     </div>
 </div>
