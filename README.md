@@ -1,11 +1,11 @@
 # Online Random Survey Application
 
-> This application presents randomly selected survey questions to site visitors.  Visitors are never given a repeat question.  Answers are stored in a MySQL database.  The application features an admin interface which allows authorized users to add admin users, create questions, view questions and view visitors' answers.  It is built on Node.js and utilizes Express.js, Sequelize.js and Handlebars.js.
+> This application presents randomly selected multiple choice survey questions to site visitors.  Visitors are never given a repeat question.  Answers are stored in a MySQL database.  The application features an admin interface which allows authorized users to add admin users, create questions, view questions and view visitors' answers.  It is built on Node.js and utilizes Express.js, Sequelize.js and Handlebars.js.
 
-##Installation Instructions For Local Environment:
-    * Clone the repository into your chosen directory: git clone [repository GitHub link]
-    * Install the node dependencies: npm install
-    * Create a /config folder in the program root directory with a config.json file and paste the following into config.json (include your personal database credentials):
+###Installation Instructions For Local Environment:
+ * Clone the repository into your chosen directory: git clone [repository GitHub link]
+ * Install the node dependencies: npm install
+ * Create a /config folder in the program root directory with a config.json file and paste the following into config.json (include your personal database credentials):
 
         ```
         {
