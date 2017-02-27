@@ -83,6 +83,7 @@ INSERT INTO `Users` VALUES (1,'Matthew Holland','mtholland10@gmail.com','$2a$10$
  - Application structure utilizes the MVC design pattern via the [Express Generator](https://expressjs.com/en/starter/generator.html) and [handlebars.js](http://handlebarsjs.com/) library
  - Bootstrap was used for this project (the Superhero theme via [Bootswatch](http://bootswatch.com/superhero/))
  - Session management was accomplished via the npm [express-session](https://www.npmjs.com/package/express-session) package
+ - User passwords are encrypted using the npm [bcrypt-nodejs](https://www.npmjs.com/package/bcrypt-nodejs) package
  - AJAX was used for most form processing via [jQuery](https://jquery.com/)
  - Spinners are utilized to indicate system processing
  - All data is stored in a [MySQL](https://www.mysql.com/) database
