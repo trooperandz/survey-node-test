@@ -32,12 +32,11 @@ module.exports = {
                 questionObj.questionId = question.dataValues.id;
                 question.Choices.forEach(function(choice) {
                     choiceArr.push(choice.dataValues.choice);
-                    console.log('choice: ' + choice.dataValues.choice);
+                    //console.log('choice: ' + choice.dataValues.choice);
                 });
                 questionObj.choices = choiceArr;
                 questionArr.push(questionObj);
             });
-            console.log('questionArr: ' , questionArr);
             res.render('viewQuestions', { questions:questionArr, adminUser:req.session.firstName });
         });
     },
@@ -59,7 +58,7 @@ module.exports = {
                     answer: answerObj.dataValues.Choice.choice,
                 };
             });
-            console.log('answers: ' , answerArray);
+            //console.log('answers: ' , answerArray);
             res.render('viewAnswers', { answers:answerArray, adminUser:req.session.firstName });
         });
     },

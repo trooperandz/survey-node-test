@@ -23,5 +23,5 @@
     "sequelize": "^3.30.2",
     "sequelize-cli": "^2.5.1",
     "serve-favicon": "~2.3.0"
-  }
+  },
 }
