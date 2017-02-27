@@ -49,6 +49,12 @@ $ npm install
 
  * Create three databases in your local MySQL GUI (one for development, one for testing and one for production). Make sure that your credentials match those in the config.json file
 
+ ```sh
+CREATE DATABASE survey_development;
+CREATE DATABASE survey_test;
+CREATE DATABASE survey_production;
+ ```
+
  * Run the program in your chosen environment (the database tables will populate at this point):
     - For development: ```npm start```
     - For testing: ```npm run start-test```
