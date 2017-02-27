@@ -78,11 +78,14 @@ INSERT INTO `Users` VALUES (1,'Matthew Holland','mtholland10@gmail.com','$2a$10$
 
 ### Notes
 
+ - [Node](https://nodejs.org/) version ```0.10.46``` was used for this project
+ - The [Airbnb Javascript ES5](https://github.com/airbnb/javascript/tree/es5-deprecated/es5) style guide was followed
  - Application structure utilizes the MVC design pattern via the [Express Generator](https://expressjs.com/en/starter/generator.html) and [handlebars.js](http://handlebarsjs.com/) library
- - Bootstrap was used for this project (the Superhero theme via [Bootswatch](http://bootswatch.com/superhero/)
+ - Bootstrap was used for this project (the Superhero theme via [Bootswatch](http://bootswatch.com/superhero/))
  - Session management was accomplished via the npm [express-session](https://www.npmjs.com/package/express-session) package
  - AJAX was used for most form processing via [jQuery](https://jquery.com/)
  - Spinners are utilized to indicate system processing
+ - All data is stored in a [MySQL](https://www.mysql.com/) database
  - All SQL tables and queries were managed via the [SequelizeJS](http://docs.sequelizejs.com/en/v3/) ORM
  - All forms contain error handling
 
