@@ -7,10 +7,14 @@
             <p class="pull-right">Total Questions: <span id="question-count">{{questions.length}}</span></p>
             </div>
             <hr>
+      {{!-- If there are questions in the system, populate.  Else show no questions feedback --}}
+      {{#if questions}}
         {{#questions}}
             <div class="panel panel-warning panel-question">
                 <div class="panel-heading">
-                    <h3 class="panel-title text-gray">{{index}}) {{this.question}} <a href="#" class="text-danger pull-right delete-question-link" data-questionId="{{this.questionId}}"> Delete</a></h3>
+                    <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+                    {{this.question}}
+                    <a href="#" class="text-danger pull-right delete-question-link" data-questionId="{{this.questionId}}"> <span class="glyphicon glyphicon-trash"></span></a>
                 </div>
                 <div class="panel-body">
                     <form class="form-horizontal">
@@ -32,6 +36,11 @@
                 </div>
             </div> {{!-- /.panel --}}
         {{/questions}}
+      {{else}}
+            <div class="well">
+                <p class="text-warning">There are no questions in the system!</p>
+            </div>
+      {{/if}}
         </div>
     </div>
 </div>

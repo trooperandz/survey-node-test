@@ -4,6 +4,13 @@
             <h1>Hello!  Please answer the following question:</h1>
             <hr>
             <div class="well">
+
+              {{!-- If there are no questions in the system, show feedback --}}
+              {{#if noSystemQuestions}}
+                <p class="text-warning">There are no questions in the system!</p>
+              {{/if}}
+
+              {{!-- If a question was generated, present question to guest --}}
               {{#if question}}
                 <form class="form-horizontal" id="guest-survey-form">
                   <fieldset>
@@ -36,10 +43,14 @@
                     </div>
                   </fieldset>
                 </form>
-              {{else}}
+              {{/if}}
+
+              {{!-- If guest has answered all possible questions, show feedback --}}
+              {{#if allQuestionsAnswered}}
                 <p class="success">You have already answered all questions in the system.</p>
                 <p>Thank you for your participation!</p>
               {{/if}}
+
             </div>
         </div>
     </div>

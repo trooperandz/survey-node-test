@@ -4,10 +4,15 @@ var models = require('../models'),
 // Select a random question and serve the index page
 function getRandomQuestion(req, res) {
     services.getRandomQuestion().then(function(question) {
-        var ques = question[0].dataValues.question;
-        var QuestionId = question[0].dataValues.id;
-        var choices = question[0].Choices;
-        res.render('index', { question:ques, choices:choices, QuestionId:QuestionId });
+        if (question.length > 0) {
+            var ques = question[0].dataValues.question;
+            var QuestionId = question[0].dataValues.id;
+            var choices = question[0].Choices;
+            res.render('index', { question:ques, choices:choices, QuestionId:QuestionId });
+        } else {
+            // There are no questions in the database yet. Show feedback message
+            res.render('index', { noSystemQuestions: true });
+        }
     });
 }
 
@@ -45,7 +50,7 @@ module.exports = {
                                 res.render('index', { question:ques, choices:choices, QuestionId:QuestionId });
                             } else {
                                 // Note: do not need to pass other params.  Will read false
-                                res.render('index');
+                                res.render('index', { allQuestionsAnswered: true });
                             }
                         });
                     } else {

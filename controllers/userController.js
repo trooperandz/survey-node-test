@@ -24,21 +24,22 @@ module.exports = {
             if (!user) {
                 console.log('user was not found');
                 res.send('fail');
-            }
-            var hash = user.dataValues.password;
+            } else {
+                var hash = user.dataValues.password;
 
-            // Validate password
-            bcrypt.compare(password, hash, function(err, response) {
-                if (err) {
-                    res.send('error');
-                } else if (response) {
-                    console.log('Password validated!');
-                    res.send('success');
-                } else if (!response) {
-                    console.log('Password did not pass!')
-                    res.send('fail');
-                }
-            });
+                // Validate password
+                bcrypt.compare(password, hash, function(err, response) {
+                    if (err) {
+                        res.send('error');
+                    } else if (response) {
+                        console.log('Password validated!');
+                        res.send('success');
+                    } else if (!response) {
+                        console.log('Password did not pass!')
+                        res.send('fail');
+                    }
+                });
+            }
         });
     },
 

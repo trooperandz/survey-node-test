@@ -3,49 +3,52 @@
         <div class="col-xs-12">
             <h1>Manage Users</h1>
             <hr>
-            <div class="well">
             <form action="/users/create" method="POST" class="form-horizontal" id="register-form">
-              <fieldset>
-                <legend>Add New User</legend>
+                <fieldset>
+                    <div class="panel panel-default panel-user">
+                        <div class="panel-heading">
+                            Add New User
+                        </div>
+                        <div class="panel-body">
+                            {{!-- Display form errors, if any --}}
+                            {{#if errors}}
+                                {{#each errors}}
+                                    <p class="error">{{this}}</p>
+                                {{/each}}
+                            {{/if}}
 
-                {{!-- Display form errors, if any --}}
-                {{#if errors}}
-                    {{#each errors}}
-                        <p class="error">{{this}}</p>
-                    {{/each}}
-                {{/if}}
+                            {{!-- Display success msg if user was registered successfully --}}
+                            {{#if successMsg}}
+                                <p class="success">{{successMsg}}</p>
+                            {{/if}}
 
-                {{!-- Display success msg if user was registered successfully --}}
-                {{#if successMsg}}
-                    <p class="success">{{successMsg}}</p>
-                {{/if}}
-
-                <div class="form-group">
-                    <label for="registerName" class="col-lg-2 control-label">Full Name</label>
-                    <div class="col-lg-10">
-                        <input type="text" class="form-control" name="registerName" id="registerName" value="{{name}}" placeholder="Enter User's Full Name">
+                            <div class="form-group">
+                                <label for="registerName" class="col-lg-2 control-label">Full Name</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" name="registerName" id="registerName" value="{{name}}" placeholder="Enter User's Full Name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="registerEmail" class="col-lg-2 control-label">Email Address</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" name="registerEmail" id="registerEmail" value="{{email}}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="registerPass" class="col-lg-2 control-label">Password</label>
+                                <div class="col-lg-10">
+                                    <input type="password" class="form-control" name="registerPass" id="registerPass" value="{{password}}">
+                                </div>
+                            </div>
+                            <div class="form-group form-button">
+                                <div class="col-lg-10">
+                                  <button type="submit" class="btn btn-info" id="register-submit-btn">Submit</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="registerEmail" class="col-lg-2 control-label">Email Address</label>
-                    <div class="col-lg-10">
-                        <input type="text" class="form-control" name="registerEmail" id="registerEmail" value="{{email}}">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="registerPass" class="col-lg-2 control-label">Password</label>
-                    <div class="col-lg-10">
-                        <input type="password" class="form-control" name="registerPass" id="registerPass" value="{{password}}">
-                    </div>
-                </div>
-                <div class="form-group">
-                  <div class="col-lg-10">
-                    <button type="submit" class="btn btn-primary" id="register-submit-btn">Submit</button>
-                  </div>
-                </div>
-              </fieldset>
+                </fieldset>
             </form>
-            </div>
         </div>
     </div>
 </div>

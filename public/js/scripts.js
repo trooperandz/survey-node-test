@@ -37,7 +37,7 @@ $(document).ready(function() {
                 switch (response) {
                     case 'success':
                         // Answer processed successfully
-                        $('.success').html('<p>Thank you!  Your answer was submitted successfully.</p>');
+                        $('.success').html('<p>Thank you!  Your answer was submitted successfully. <a href="/"> Answer Another</a></p>');
                         break;
                     case 'error':
                         // System error
@@ -122,7 +122,7 @@ $(document).ready(function() {
         e.preventDefault();
 
         // TODO: make a component to prevent duplication with template input
-        $('.panel-question .answers').append(answerInput);
+        $('.panel-create-question .answers').append(answerInput);
     });
 
     // Process the add question form. Validate inputs first.
@@ -205,10 +205,15 @@ $(document).ready(function() {
                         // Question deleted successfully. Remove from DOM and show alert
                         questionContainer.remove();
                         $('.alert-modal .modal-body').html('<p>The question was deleted successfully!</p>');
-                        // Update question count using container count
-                        var questionCount = $('.panel-question').length;
-                        $('#question-count').html(questionCount);
                         $('.alert-modal').modal('show');
+                        // Update question count using container count
+                        // If last question, reload page to show no questions in system feedback
+                        var questionCount = $('.panel-question').length;
+                        if (questionCount > 0) {
+                            $('#question-count').html(questionCount);
+                        } else {
+                            window.location.href="/admin/viewQuestions";
+                        }
                         break;
                     default:
                         // System error

@@ -17,16 +17,19 @@
       <ul class="nav navbar-nav navbar-right">
         {{!-- This only shows if logged in --}}
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Hello, Matt <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
+            <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp; Home</a></li>
             <li class="divider"></li>
-            <li><a href="/admin/viewQuestions">View Questions</a></li>
+            <li><a href="/admin/viewQuestions"><span class="glyphicon glyphicon-question-sign"></span>&nbsp; View Questions</a></li>
             <li class="divider"></li>
-            <li><a href="/admin/viewAnswers">View Answers</a></li>
+            <li><a href="/admin/viewAnswers"><span class="glyphicon glyphicon-ok-circle"></span>&nbsp; View Answers</a></li>
             <li class="divider"></li>
-            <li><a href="/admin/addQuestionForm">Add Questions</a></li>
+            <li><a href="/admin/addQuestionForm"><span class="glyphicon glyphicon-plus"></span>&nbsp; Add Questions</a></li>
             <li class="divider"></li>
-            <li><a href="/admin/logout">Log Out</a></li>
+            <li><a href="/users"><span class="glyphicon glyphicon-user"></span>&nbsp; Add Users</a></li>
+            <li class="divider"></li>
+            <li><a href="/admin/logout"><span class="glyphicon glyphicon-off"></span>&nbsp; Log Out</a></li>
           </ul>
         </li>
         <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
