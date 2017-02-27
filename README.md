@@ -2,50 +2,71 @@
 
 > This application presents randomly selected multiple choice survey questions to site visitors.  Visitors are never given a repeat question.  Answers are stored in a MySQL database.  The application features an admin interface which allows authorized users to add admin users, create questions, view questions and view visitors' answers.  It is built on Node.js and utilizes Express.js, Sequelize.js and Handlebars.js.
 
-###Installation Instructions For Local Environment:
- * Clone the repository into your chosen directory: git clone [repository GitHub link]
- * Install the node dependencies: npm install
- * Create a /config folder in the program root directory with a config.json file and paste the following into config.json (include your personal database credentials):
+##### To view the live site demo, navigate to:
+[www.survey.mtholla.com](http://www.survey.mtholla.com)
 
-        ```
-        {
-            "development": {
-                "username": "root",
-                "password": "",
-                "database": "survey_development",
-                "host": "localhost",
-                "dialect": "mysql"
-            },
-            "test": {
-                "username": "root",
-                "password": "",
-                "database": "survey_test",
-                "host": "localhost",
-                "dialect": "mysql"
-            },
-            "production": {
-                "username": "root",
-                "password": "",
-                "database": "survey_production",
-                "host": "localhost",
-                "dialect": "mysql"
-            }
-        }
-        ```
+### Installation Instructions For Local Environment:
 
-    * Create three databases in your local MySQL GUI (one for development, one for testing and one for production). Make sure that your credentials match those in the config.json file
+ * Clone the repository into your chosen directory:
 
-    * Run the program in your chosen environment (the database tables will generate at this point):
-        - For development: ```npm start``` or ```npm run start-development``
-        - For testing: ```npm run start-test```
-        - For production: ```npm run start-production```
+ ```sh
+$ cd survey-app
+$ git clone git@github.com:trooperandz/survey-node-test.git
+```
 
-    * Populate your chosen database environment with the initial authorized user (REQUIRED for initial access to the admin section).  Use the /seeders/user.sql file, copy and run the SQL INSERT instruction located in that file in your MySQL GUI application.
+ * Install the node dependencies:
 
-    * Optional: If you wish to view a sampling of already existing questions and answers in your local environment without creating them yourself, you may also populate the remaining table INSERT instructions in the following order (/seeders directory, listed by file name):
-        - guest.sql
-        - question.sql
-        - choice.sql
-        - answer.sql
+```sh
+$ npm install
+```
 
-    * At this point, you are ready to run and explore the application in your local environment! Navigate to http://localhost:3000/ in your chosen browser and enjoy.
+ * Create a /config folder in the program root directory with a config.json file and paste the following into it (include your personal database credentials):
+
+```sh
+    {
+    "development": {
+        "username": "root",
+        "password": "",
+        "database": "survey_development",
+        "host": "localhost",
+        "dialect": "mysql"
+    },
+    "test": {
+        "username": "root",
+        "password": "",
+        "database": "survey_test",
+        "host": "localhost",
+        "dialect": "mysql"
+    },
+    "production": {
+        "username": "root",
+        "password": "",
+        "database": "survey_production",
+        "host": "localhost",
+        "dialect": "mysql"
+    }
+}
+```
+
+ * Create three databases in your local MySQL GUI (one for development, one for testing and one for production). Make sure that your credentials match those in the config.json file
+
+ * Run the program in your chosen environment (the database tables will populate at this point):
+    - For development: ```npm start```
+    - For testing: ```npm run start-test```
+    - For production: ```npm run start-production```
+
+
+* Populate your chosen database environment with the initial authorized user (REQUIRED for initial access to the admin section).  Use the /seeders/user.sql file, and copy and run the SQL INSERT instruction located in that file in your MySQL GUI application:
+
+```sh
+INSERT INTO `Users` VALUES (1,'Matthew Holland','mtholland10@gmail.com','$2a$10$5g2v/mW2rN.g8NSHsVQJgektgyPSHjaHemRiHHSr2eIHOQbCIK1Nq','127.0.0.1',1,'2017-02-23 22:02:12','2017-02-23 22:02:12'),(2,'Guest','guest@guest.com','$2a$10$.hrFPZYDXaSuIQqnBEklIORP7/qMbUcQQuICBv7yRYPGl2b7ocURG','127.0.0.1',1,'2017-02-27 17:39:21','2017-02-27 17:39:21');
+```
+
+* Optional: If you wish to view a sampling of already existing questions and answers in your local environment without creating them yourself, you may also populate the remaining table INSERT instructions in the following order (/seeders directory, listed by file name):
+    - ```guest.sql```
+    - ```question.sql```
+    - ```choice.sql```
+    - ```answer.sql```
+
+
+* At this point, you are ready to run and explore the application in your local environment. Navigate to http://localhost:3000/ in your chosen browser and enjoy!
