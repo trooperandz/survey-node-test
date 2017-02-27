@@ -7,7 +7,6 @@ body {
     padding-top: 50px;
     margin-bottom: 50px;
     font-family: 'Raleway', sans-serif;
-    /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
 }
 
 .error {
@@ -64,6 +63,10 @@ a:hover, a:visited, a:focus {
 /* Remove focus outlines from all links */
 a:focus {
     outline: none;
+}
+
+.delete-question-link {
+    font-weight: 200;
 }
 
 /* Remove focus outlines from all buttons */

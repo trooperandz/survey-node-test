@@ -184,7 +184,7 @@ $(document).ready(function() {
     $('.delete-question-link').on('click', function(e) {
         //var questionId = $(this).data('questionId');
         // Save container for later deletion
-        var questionContainer = $(this).parent().parent().parent();
+        var questionContainer = $(this).parent().parent();
         var questionId = $(this).attr('data-questionId');
 
         var formData = 'questionId=' + questionId;
@@ -207,8 +207,8 @@ $(document).ready(function() {
                         $('.alert-modal .modal-body').html('<p>The question was deleted successfully!</p>');
                         $('.alert-modal').modal('show');
                         // Update question count using container count
-                        // If last question, reload page to show no questions in system feedback
                         var questionCount = $('.panel-question').length;
+                        // If last question, reload page to show no questions in system feedback
                         if (questionCount > 0) {
                             $('#question-count').html(questionCount);
                         } else {
@@ -278,6 +278,6 @@ $(document).ready(function() {
     // Clear and restore add question form inputs to original state
     function restoreAddQuestionInputs() {
         $('input').val('');
-        $('.panel-question .answers').html(answerInput);
+        $('.panel-create-question .answers').html(answerInput);
     }
 });

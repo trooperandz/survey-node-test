@@ -57,7 +57,10 @@ module.exports = {
             if (obj.name == 'question') {
                 questionObj = obj;
             } else if (obj.name == 'answer') {
-                answerObjArr.push(obj);
+                // Do not add answer if user left input blank
+                if (obj.value != '') {
+                    answerObjArr.push(obj);
+                }
             }
         });
 
