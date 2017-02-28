@@ -1,6 +1,6 @@
 # Online Random Survey Application
 
-> This application presents randomly selected multiple choice survey questions to site visitors.  Visitors are never given a repeat question.  Answers are stored in a MySQL database.  The application features an admin interface which allows authorized users to add admin users, create questions, view/delete questions and view visitors' answers.  It is built on Node.js and utilizes Express.js, Sequelize.js and Handlebars.js.
+> This application presents randomly selected multiple choice survey questions to site visitors.  Visitors are never given a repeat question.  Answers are stored in a MySQL database.  The application features an admin interface which allows authorized users to add admin users, create and delete questions, and view visitors' answers.  It is built with Node.js and utilizes Express.js, Sequelize.js and Handlebars.js.
 
 ##### To view the live site demo, navigate to [survey.mtholla.com](http://survey.mtholla.com)
 

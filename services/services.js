@@ -8,7 +8,9 @@ module.exports = {
     // See if site visitor is already registered
     getGuest: function(ipAddress) {
         return models.Guest.findOne({
-            where: {ipAddress:ipAddress},
+            where: {
+                ipAddress:ipAddress
+            },
         });
     },
 
@@ -23,7 +25,9 @@ module.exports = {
     // Get admin user for login actions
     getUser: function(email) {
         return models.User.findOne({
-            where: { email:email },
+            where: {
+                email:email
+            },
         });
     },
 
@@ -42,7 +46,9 @@ module.exports = {
     // Return array of QuestionId's for one visitor (guest)
     getAnswerQuestionIds: function(guestId) {
         return models.Answer.findAll({
-            where: {guestId:guestId},
+            where: {
+                guestId:guestId
+            },
             attributes: ['QuestionId'],
         });
     },
@@ -68,13 +74,15 @@ module.exports = {
     // Get a question that the guest has not been previously asked
     getNewQuestion: function(questionIdArray) {
         return models.Question.findAll({
-            limit: 1,
-            order: [ [Sequelize.fn('RAND')] ],
             where: {
                 id: {
                     $notIn: questionIdArray,
                 }
             },
+            order: [
+                [ Sequelize.fn('RAND') ],
+            ],
+            limit: 1,
             include: [{
                 model: models.Choice,
             }],
@@ -87,7 +95,9 @@ module.exports = {
         return models.Question.findAll({
             limit: 1,
             order: [ [Sequelize.fn('RAND')] ],
-            include: [{  model: models.Choice }],
+            include: [{
+                model: models.Choice
+            }],
         });
     },
 
