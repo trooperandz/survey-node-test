@@ -8,7 +8,7 @@ function getRandomQuestion(req, res) {
             var ques = question[0].dataValues.question;
             var QuestionId = question[0].dataValues.id;
             var choices = question[0].Choices;
-            res.render('index', { question:ques, choices:choices, QuestionId:QuestionId });
+            res.render('index', { question:ques, choices:choices, QuestionId:QuestionId, adminUser: req.session.firstName });
         } else {
             // There are no questions in the database yet. Show feedback message
             res.render('index', { noSystemQuestions: true, adminUser:req.session.firstName });
