@@ -184,3 +184,11 @@ input#registerPass {
 .footer p {
     margin: 14.5px 0;
 }
+
+/* Media queries */
+@media (max-width: 768px) {
+    /* Hide 'Remove' link word on small devices */
+    .remove-link-span {
+        display: none;
+    }
+}
