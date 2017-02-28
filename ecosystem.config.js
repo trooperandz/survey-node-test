@@ -6,7 +6,7 @@ module.exports = {
      */
     apps : [
         {
-            name : 'survey_node_test',
+            name : 'survey-test',
             script : './bin/www',
             watch : true,
             env: {
