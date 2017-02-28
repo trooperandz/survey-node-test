@@ -87,7 +87,7 @@ module.exports = {
         // If there were errors, send back error messages
         if (errorArr.length > 0) {
             // Return user back to users page and display errors. Keep form inputs.
-            return res.render('users', { name:name, email:email, password:password, errors:errorArr })
+            return res.render('users', { name:name, email:email, password:password, errors:errorArr, adminUser:req.session.firstName })
         } else {
             // If no errors, insert new user into db, return user to users page and display success message
             services.insertUser(name, email, hash, ipAddress, admin).then(function(user) {
