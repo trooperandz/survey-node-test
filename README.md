@@ -74,7 +74,7 @@ INSERT INTO `Users` VALUES (1,'Matthew Holland','mtholland10@gmail.com','$2a$10$
     - ```answer.sql```
 
 
-* At this point, you are ready to run and explore the application in your local environment. Navigate to http://localhost:3000/ in your chosen browser and enjoy!
+* At this point, you are ready to run and explore the application in your local environment. Navigate to http://localhost:5005/ in your chosen browser and enjoy!
  - To login, use the following: Email = ```guest@guest.com``` , Password = ```Password1#```
 
 ### Notes
@@ -98,6 +98,7 @@ INSERT INTO `Users` VALUES (1,'Matthew Holland','mtholland10@gmail.com','$2a$10$
  - Create a clone application using [React.js](https://facebook.github.io/react)
  - Investigate possibility of replacing SequelizeJS ```hasMany``` assocation with the ```belongsToMany``` association
  - Investigate the optimization and possible alternatives of the ```getGuestAnswers()``` database query function located in the /services/services.js file
- - Fix the ordering of question choices (by id)
+ - Fix the ordering of question choices on main index page (by id)
  - Show visitors incorrect/correct answer feedback
  - Add visible breaks between visitors on answers page
+ - Show correct/incorrect answer stats on answers page
