@@ -23,5 +23,11 @@
         "sequelize": "^3.30.2",
         "sequelize-cli": "^2.5.1",
         "serve-favicon": "~2.3.0"
-    }
+  },
+  "devDependencies": {
+        "babel-eslint": "^6.1.2",
+        "eslint": "^3.16.1",
+        "eslint-config-airbnb-es5": "^1.1.0",
+        "eslint-plugin-react": "^6.10.0"
+  }
 }

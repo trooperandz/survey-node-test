@@ -91,13 +91,18 @@ module.exports = {
                 // Now insert all choices
                 answerObjArr.forEach(function(answerObj) {
                     services.insertChoice(answerObj.value, questionId).then(function(choice) {
+                        // If database insert error, send error
+                        if (!choice) {
+                            res.send('error');
+                        }
                     });
                 });
             } else {
                 res.send('error');
             }
+            // If code reaches this point, there was no error reached in insertChoice loop. Send success status
+            res.send('success');
         });
-        res.send('success');
     },
 
     // Delete the selected question
