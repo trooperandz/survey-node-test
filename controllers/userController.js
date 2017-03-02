@@ -1,6 +1,6 @@
-var models = require('../models'),
-    bcrypt = require('bcrypt-nodejs'),
-    services = require('../services/services');
+var models = require('../models');
+var bcrypt = require('bcrypt-nodejs');
+var services = require('../services/services');
 
 // Form validation regex patterns
 validEmail = /(^[\w-]+(?:\.[\w-]+)*@(?:[\w-]+\.)+[a-zA-Z]{2,7}$)|(^N\/A$)/,

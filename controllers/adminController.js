@@ -1,5 +1,5 @@
-var models = require('../models'),
-    services = require('../services/services');
+var models = require('../models');
+var services = require('../services/services');
 
 module.exports = {
     // Load add question page

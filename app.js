@@ -1,14 +1,15 @@
+'use strict';
 
-var express = require('express'),
-    path = require('path'),
-    favicon = require('serve-favicon'),
-    logger = require('morgan'),
-    cookieParser = require('cookie-parser'),
-    bodyParser = require('body-parser'),
-    session = require('express-session'),
-    hbs = require('hbs'),
-    exphbs = require('express-handlebars'),
-    app = express();
+var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var session = require('express-session');
+var hbs = require('hbs');
+var exphbs = require('express-handlebars');
+var app = express();
 
 // Establish routes
 var indexRoute = require('./routes/index');

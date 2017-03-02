@@ -1,5 +1,5 @@
-var models = require('../models'),
-    services = require('../services/services');
+var models = require('../models');
+var services = require('../services/services');
 
 // Select a random question and serve the index page
 function getRandomQuestion(req, res) {
