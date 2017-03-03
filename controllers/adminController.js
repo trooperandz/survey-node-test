@@ -1,3 +1,5 @@
+'use strict';
+
 var models = require('../models');
 var services = require('../services/services');
 
@@ -55,7 +57,7 @@ module.exports = {
                 return {
                     ipAddress: answerObj.dataValues.Guest.ipAddress,
                     question: answerObj.dataValues.Question.question,
-                    answer: answerObj.dataValues.Choice.choice,
+                    answer: answerObj.dataValues.Choice.choice
                 };
             });
             //console.log('answers: ' , answerArray);
@@ -111,5 +113,5 @@ module.exports = {
         services.deleteQuestion(questionId).then(function(question) {
             res.send('success');
         });
-    },
+    }
 }

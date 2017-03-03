@@ -10,14 +10,14 @@ module.exports = {
         return models.Guest.findOne({
             where: {
                 ipAddress:ipAddress
-            },
+            }
         });
     },
 
     // If site visitor in not registered, insert into guest table
     insertGuest: function(ipAddress) {
         return models.Guest.create({
-            ipAddress:ipAddress,
+            ipAddress:ipAddress
         });
     },
 
@@ -27,7 +27,7 @@ module.exports = {
         return models.User.findOne({
             where: {
                 email:email
-            },
+            }
         });
     },
 
@@ -38,7 +38,7 @@ module.exports = {
             email:email,
             password:password,
             ipAddress:ipAddress,
-            admin:admin,
+            admin:admin
         });
     },
 
@@ -49,7 +49,7 @@ module.exports = {
             where: {
                 guestId:guestId
             },
-            attributes: ['QuestionId'],
+            attributes: ['QuestionId']
         });
     },
 
@@ -58,7 +58,7 @@ module.exports = {
         return models.Answer.create({
             ChoiceId:ChoiceId,
             GuestId:GuestId,
-            QuestionId:QuestionId,
+            QuestionId:QuestionId
         });
     },
 
@@ -66,8 +66,8 @@ module.exports = {
     getQuestions: function() {
         return models.Question.findAll({
             include: [{
-                model: models.Choice,
-            }],
+                model: models.Choice
+            }]
         });
     },
 
@@ -76,16 +76,16 @@ module.exports = {
         return models.Question.findAll({
             where: {
                 id: {
-                    $notIn: questionIdArray,
+                    $notIn: questionIdArray
                 }
             },
             order: [
-                [ Sequelize.fn('RAND') ],
+                [ Sequelize.fn('RAND') ]
             ],
             limit: 1,
             include: [{
-                model: models.Choice,
-            }],
+                model: models.Choice
+            }]
         });
     },
 
@@ -97,7 +97,7 @@ module.exports = {
             order: [ [Sequelize.fn('RAND')] ],
             include: [{
                 model: models.Choice
-            }],
+            }]
         });
     },
 
@@ -105,7 +105,7 @@ module.exports = {
     getGuestAnswers: function() {
         return models.Answer.findAll({
             attributes: [
-                'GuestId', 'ChoiceId', 'QuestionId',
+                'GuestId', 'ChoiceId', 'QuestionId'
             ],
             order: 'GuestId',
             include: [
@@ -117,15 +117,15 @@ module.exports = {
                 },
                 {
                     model: models.Guest
-                },
-            ],
+                }
+            ]
         });
     },
 
     // Insert new question into the database
     insertQuestion: function(question) {
         return models.Question.create({
-            question:question,
+            question:question
         });
     },
 
@@ -134,7 +134,7 @@ module.exports = {
         return models.Question.destroy({
             where: {
                 id: questionId
-            },
+            }
         });
     },
 
@@ -142,7 +142,7 @@ module.exports = {
     insertChoice: function(choice, QuestionId) {
         return models.Choice.create({
             choice:choice,
-            QuestionId:QuestionId,
+            QuestionId:QuestionId
         });
-    },
+    }
 }

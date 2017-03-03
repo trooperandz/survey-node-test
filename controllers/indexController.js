@@ -1,3 +1,5 @@
+'use strict';
+
 var models = require('../models');
 var services = require('../services/services');
 
@@ -35,9 +37,10 @@ module.exports = {
                             return data.dataValues.QuestionId;
                         });
                         console.log('questionIdArray after map: ' , questionIdArray);
-                        // Now get a question that has not already been answered by guest
-                        // If question is found, render index page with question
-                        // If no question is found, show feedback that all questions have already been answered by guest
+                        /** Now get a question that has not already been answered by guest
+                         * If question is found, render index page with question
+                         * If no question is found, show feedback that all questions have already been answered by guest
+                         */
                         services.getNewQuestion(questionIdArray).then(function(question) {
                             if (question.length > 0) {
                                 var ques = question[0].dataValues.question;
@@ -86,5 +89,5 @@ module.exports = {
                 res.send('error');
             }
         });
-    },
+    }
 }
