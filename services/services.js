@@ -1,10 +1,10 @@
 // Provide all system db actions
 
-var Sequelize = require('sequelize'),
-    models = require('../models');
+var Sequelize = require('sequelize');
+var models = require('../models');
 
 module.exports = {
-    // Index actions
+    /* Index actions */
     // See if site visitor is already registered
     getGuest: function(ipAddress) {
         return models.Guest.findOne({
@@ -21,7 +21,7 @@ module.exports = {
         });
     },
 
-    // User actions
+    /* User actions */
     // Get admin user for login actions
     getUser: function(email) {
         return models.User.findOne({
@@ -42,7 +42,7 @@ module.exports = {
         });
     },
 
-    // Question & Answer actions
+    /* Question & Answer actions */
     // Return array of QuestionId's for one visitor (guest)
     getAnswerQuestionIds: function(guestId) {
         return models.Answer.findAll({
