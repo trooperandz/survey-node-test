@@ -107,3 +107,4 @@ INSERT INTO `Users` VALUES (1,'Matthew Holland','mtholland10@gmail.com','$2a$10$
  - Add admin users listing and edit functionality
  - Add delete answers functionality
  - Implement unit testing with [Mocha](https://mochajs.org/) and [Chai](http://chaijs.com/)
+ - Redesign IP capture to use unique cookies instead of actual IP addresses
