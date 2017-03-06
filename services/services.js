@@ -1,3 +1,5 @@
+'use strict';
+
 // Provide all system db actions
 
 var Sequelize = require('sequelize');
