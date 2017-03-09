@@ -72,6 +72,11 @@ a:focus {
 .delete-question-link {
     font-weight: 300;
     color: gray;
+    transition: .4s;
+}
+
+.btn {
+    transition: .4s;
 }
 
 /* Remove focus outlines from all buttons */
