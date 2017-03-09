@@ -7,7 +7,7 @@ $(document).ready(function() {
     var timeDelay = 1400;
 
     // Answer input element, to be reused by multiple actions
-    var answerInput = '<input type="text" class="form-control answer" name="answer" placeholder="Enter an answer choice">';
+    var answerInput = '<div class="answer-container"><input type="text" class="form-control answer" name="answer" placeholder="Enter an answer choice"><span class="glyphicon glyphicon-remove-circle answer-remove-icon"></span></div>';
 
     // Process the guest question selection submit via AJAX
     $('#guest-survey-form button').on('click', function(e) {
@@ -132,6 +132,11 @@ $(document).ready(function() {
 
         // TODO: make a component to prevent duplication with template input
         $('.panel-create-question .answers').append(answerInput);
+    });
+
+    // Remove answer rows from question generate form
+    $('.answers').on('click', 'span', function(e) {
+        $(this).parent().remove();
     });
 
     // Process the add question form. Validate inputs first.
