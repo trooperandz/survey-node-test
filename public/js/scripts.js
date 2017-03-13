@@ -6,6 +6,40 @@ $(document).ready(function() {
     // Spinner time delay
     var timeDelay = 1400;
 
+    // Cookies
+    const cookieName = 'question';
+    function createCookie(name, value, days) {
+        let expires ='';
+
+        if (days) {
+            let date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires ='; expires=' + date.toUTCString();
+        } else {
+            expires = '';
+        }
+        document.cookie = name + '=' + value + expires + '; path=/';
+        console.log('cookie in createCookie fn: ' + document.cookie);
+    }
+
+    function readCookie(name) {
+        let nameQuery = name + "=";
+        let cookieArray = document.cookie.split(';');
+        for(var i=0; i < cookieArray.length; i++) {
+            let c = cookieArray[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1, c.length);
+            }
+            if (c.indexOf(nameQuery) == 0) {
+                return c.substring(nameQuery.length,c.length);
+            }
+        }
+        return null;
+    }
+
+    createCookie(cookieName, 'testCookie', 7);
+    console.log('question cookie: ' + readCookie(cookieName));
+
     // Answer input element, to be reused by multiple actions
     var answerInput = '<div class="answer-container"><input type="text" class="form-control answer" name="answer" placeholder="Enter an answer choice"><span class="glyphicon glyphicon-remove-circle answer-remove-icon"></span></div>';
 

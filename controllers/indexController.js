@@ -23,6 +23,7 @@ module.exports = {
     renderIndexPage: function(req, res) {
         // Check Guests table to see if IP address is already registered.
         var ipAddress = req.ip;
+        console.log('cookie: ' , req.cookie);
         services.getGuest(ipAddress).then(function(guest) {
             if(guest) {
                 // Generate list of questionIds already answered. Get guestId first
