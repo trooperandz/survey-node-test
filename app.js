@@ -31,7 +31,7 @@ app.use(session({
     genid: function(req) {
         return genuuid();
     },
-    secret: 'keyboard cat',
+    secret: 'JDFKjdfjsl#$!dkjf#',
     resave: false,
     saveUninitialized: true,
     // Note: change to true when https is enabled
