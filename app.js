@@ -19,11 +19,18 @@ var adminRoute = require('./routes/admin');
 // Session setup
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
+    genid: function(req) {
+        return genuuid();
+    },
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true,
     // Note: change to true when https is enabled
-    cookie: { secure: false },
+    cookie: {
+        secure: false,
+        httpOnly: false,
+    },
+    name: 'testCookie',
     // Note: change to true when user is logged in.  Used for app access rules.
     authenticated: false,
     // Note: guestId will be set after IP address is processed
