@@ -21,7 +21,7 @@ app.set('trust proxy', 1) // trust first proxy
 app.use(session({
     name: 'survey.question',
     genid: function(req) {
-        return genuuid();
+        return /*genuuid();*/ 'test!';
     },
     secret: 'keyboard cat',
     resave: false,
