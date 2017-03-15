@@ -16,12 +16,20 @@ var indexRoute = require('./routes/index');
 var userRoute = require('./routes/user');
 var adminRoute = require('./routes/admin');
 
+// Establish cookie expiration date
+var date = new Date();
+var cookieExpiration = date.setTime(date.getTime() + (7*24*60*60*1000));
+
 // Session setup
+// s%3A61imwV63JD_w11xE5XUHpNX_Qbkx1KLB.GwyRuEcUbQttNOhNoE4TRIzAFqiIXtJQD7h7%2B0hSzGU
+// s%3ACe4CyyImpV-ASWXkleMzd3Q5dTsbt9mS.YalYhrsh89KnongW33NLzt7mowsKiJac31m%2Fe4vcSG0
+// s%3ACe4CyyImpV-ASWXkleMzd3Q5dTsbt9mS.YalYhrsh89KnongW33NLzt7mowsKiJac31m%2Fe4vcSG0
+// s%3A61imwV63JD_w11xE5XUHpNX_Qbkx1KLB.GwyRuEcUbQttNOhNoE4TRIzAFqiIXtJQD7h7%2B0hSzGU
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
     name: 'survey.question',
     genid: function(req) {
-        return /*genuuid();*/ 'test!';
+        return genuuid();
     },
     secret: 'keyboard cat',
     resave: false,
@@ -30,11 +38,12 @@ app.use(session({
     cookie: {
         secure: false,
         httpOnly: false,
+        expires: cookieExpiration
     },
     // Note: change to true when user is logged in.  Used for app access rules.
     authenticated: false,
     // Note: guestId will be set after IP address is processed
-    guestId: false,
+    guestId: false
 }));
 
 // Configure view engine
