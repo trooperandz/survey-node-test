@@ -9,7 +9,7 @@ $(document).ready(function() {
     // Cookies
     var cookieName = 'testCookie';
 
-    console.log('cookie: ' + document.cookie /*readCookie(cookieName*/));
+    console.log('cookie: ' + document.cookie /*readCookie(cookieName*/);
 
     // Answer input element, to be reused by multiple actions
     var answerInput = '<div class="answer-container"><input type="text" class="form-control answer" name="answer" placeholder="Enter an answer choice"><span class="glyphicon glyphicon-remove-circle answer-remove-icon"></span></div>';
