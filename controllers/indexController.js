@@ -46,7 +46,7 @@ module.exports = {
                                 var ques = question[0].dataValues.question;
                                 var QuestionId = question[0].dataValues.id;
                                 var choices = question[0].Choices;
-                                var cookie = JSON.stringify(req.session.cookie);
+                                var cookie = 'cookie: ' + req.session.cookie;
                                 res.render('index', { question:ques, choices:choices, QuestionId:QuestionId, adminUser:req.session.firstName, cookie:cookie });
                             } else {
                                 // Note: do not need to pass other params.  Will read false
