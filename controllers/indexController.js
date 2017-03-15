@@ -10,7 +10,7 @@ function getRandomQuestion(req, res) {
             var ques = question[0].dataValues.question;
             var QuestionId = question[0].dataValues.id;
             var choices = question[0].Choices;
-            var cookie = 'cookie: ' + req.session.cookie;
+            var cookie = 'cookie: ' + JSON.stringify(req.session.cookie);
             res.render('index', { question:ques, choices:choices, QuestionId:QuestionId, adminUser: req.session.firstName, cookie:cookie });
         } else {
             // There are no questions in the database yet. Show feedback message
@@ -24,7 +24,7 @@ module.exports = {
     renderIndexPage: function(req, res) {
         // Check Guests table to see if IP address is already registered.
         var ipAddress = req.ip;
-        var cookie = 'cookie: ' + req.session.cookie;
+        var cookie = 'cookie: ' + JSON.stringify(req.session.cookie);
         services.getGuest(ipAddress).then(function(guest) {
             if(guest) {
                 // Generate list of questionIds already answered. Get guestId first
