@@ -19,6 +19,7 @@ var adminRoute = require('./routes/admin');
 // Session setup
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
+    name: 'survey.question',
     genid: function(req) {
         return genuuid();
     },
@@ -30,7 +31,6 @@ app.use(session({
         secure: false,
         httpOnly: false,
     },
-    name: 'testCookie',
     // Note: change to true when user is logged in.  Used for app access rules.
     authenticated: false,
     // Note: guestId will be set after IP address is processed
