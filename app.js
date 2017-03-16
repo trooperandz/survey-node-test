@@ -21,21 +21,12 @@ var date = new Date();
 var cookieExpiration = date.setTime(date.getTime() + (7*24*60*60*1000));
 
 // Session setup
-// s%3A61imwV63JD_w11xE5XUHpNX_Qbkx1KLB.GwyRuEcUbQttNOhNoE4TRIzAFqiIXtJQD7h7%2B0hSzGU
-// s%3ACe4CyyImpV-ASWXkleMzd3Q5dTsbt9mS.YalYhrsh89KnongW33NLzt7mowsKiJac31m%2Fe4vcSG0
-// s%3ACe4CyyImpV-ASWXkleMzd3Q5dTsbt9mS.YalYhrsh89KnongW33NLzt7mowsKiJac31m%2Fe4vcSG0
-// s%3A61imwV63JD_w11xE5XUHpNX_Qbkx1KLB.GwyRuEcUbQttNOhNoE4TRIzAFqiIXtJQD7h7%2B0hSzGU
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
     name: 'survey.question',
-    /*
-    genid: function(req) {
-        return genuuid();
-    },*/
     secret: 'JDFKjdfjsl#$!dkjf#',
     resave: false,
     saveUninitialized: true,
-    // Note: change to true when https is enabled
     cookie: {
         secure: false,
         httpOnly: false,
