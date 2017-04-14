@@ -21,8 +21,6 @@ var date = new Date();
 var cookieExpiration = date.setTime(date.getTime() + (7*24*60*60*1000));
 
 // Session setup
-// s%3AnVl9mhSuh-RIB9Ni1wk993ZVi5UhS3a9.4cSHOL3ObCwQqDKsMOrruhm3ki%2F%2Fdh33M8Quu4%2BKuLs
-
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
     name: 'survey.question',
